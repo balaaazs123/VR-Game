@@ -13,15 +13,4 @@ public class BulletController : MonoBehaviour
     {
         ObjectPool.Instance.ReturnToPool(this);
     }
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

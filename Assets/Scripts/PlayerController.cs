@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private static float healthPoint = 100f;
+    public static float Health {get{return healthPoint; } set { healthPoint = value; }  }
+    
+    public static int score = 0;
+    
     public float shootTime = 0.3f;
     private float lastShootTime = 0;
 
     private GvrReticlePointer aimCross;
 
-    private static float healthPoint = 100f;
-    public static float Health {get{return healthPoint; } set { healthPoint = value; }  }
-    public static int score = 0;
-
     public Transform firepoint;
+
+    private void Start()
+    {
+        aimCross = GetComponentInChildren<GvrReticlePointer>();
+    }
 
     void FixedUpdate()
     {
         if (lastShootTime > Time.time - shootTime)
             return;
         var target = aimCross.CurrentRaycastResult;
+
         if(target.gameObject)
         {
             if(target.gameObject.tag == "Enemy")
